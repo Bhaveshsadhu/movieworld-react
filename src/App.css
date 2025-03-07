@@ -16,12 +16,43 @@ body {
   height: 250px;
   object-fit: cover;
 } */
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero {
+  flex-direction: column;
+  color: white;
+  position: relative;
+}
+.hero::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.493);
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero-content {
+  flex-direction: column;
+  z-index: 2;
+}
+.hero-title {
+  flex-direction: column;
+}
+.search {
+  width: 80%;
+}
+
 .card {
   width: 300px;
   box-shadow: 0 0 10px gray;
   background: white;
   border-radius: 10px;
-  overflow: hidden; /* Ensures the image does not overflow */
+  overflow: hidden;
+  z-index: 2;
 }
 
 .card-img {
@@ -56,6 +87,20 @@ body {
 
 .btn-danger {
   width: 80%;
+}
+
+.showmovie {
+  transform: scale(1);
+  animation: showmovie_animation 0.5s ease-in-out;
+  z-index: 2;
+}
+@keyframes showmovie_animation {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @media (max-width: 756px) {

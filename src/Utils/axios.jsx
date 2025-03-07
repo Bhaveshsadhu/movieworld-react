@@ -6,9 +6,9 @@ const APIEP = `https://www.omdbapi.com/?apikey=${API_KEY}`;
 export const fetchData = async (str) => {
   try {
     const url = `${APIEP}&t=${str}`;
-    console.log(url);
+    // console.log(url);
     const response = await axios.get(url);
-    console.log(response);
+    // console.log(response);
 
     return response.data;
   } catch (error) {

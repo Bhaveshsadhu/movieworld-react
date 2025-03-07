@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { Hero } from "./component/Hero";
 import { Display } from "./component/Display";
@@ -6,6 +6,9 @@ import { fetchData } from "./Utils/axios";
 
 function App() {
   const [moviesdata, setMoviesData] = useState({});
+  const isFetchedRef = useRef(false);
+  const [dramalist, setDramaList] = useState([]);
+  const [actionlist, setActionList] = useState([]);
   function getRandomCharacter() {
     const characters = "abcdefghijklmnopqrstuvwxyz";
     const randomIndex = Math.floor(Math.random() * characters.length);
@@ -26,15 +29,30 @@ function App() {
         console.error("Error fetching data:", error);
       }
     };
+    if (!isFetchedRef.current) {
+      fetchDataAndSetMovies();
+    }
+    // fetchDataAndSetMovies();
 
-    fetchDataAndSetMovies();
+    isFetchedRef.current = true;
   }, []);
   // console.log(moviesdata);
   return (
     <div>
-      {moviesdata ? <Hero moviesdata={moviesdata} /> : <p>Loading...</p>}
-      {moviesdata ? <Display moviesdata={moviesdata} /> : <p>Loading...</p>}
-      {/* <Display /> */}
+      {moviesdata ? (
+        <Hero
+          moviesdata={moviesdata}
+          setDramaList={setDramaList}
+          setActionList={setActionList}
+        />
+      ) : (
+        <p>Loading...</p>
+      )}
+      {moviesdata ? (
+        <Display dramalist={dramalist} actionlist={actionlist} />
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
