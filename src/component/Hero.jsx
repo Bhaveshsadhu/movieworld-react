@@ -53,7 +53,6 @@ export const Hero = ({ moviesdata, setDramaList, setActionList }) => {
         <div className="flex hero-content showmovie">
           <div className="flex hero-title">
             <h1>Search Millions of Movies</h1>
-            <h1 className="text-danger">NEED API KEY TO RUN ON LIVE</h1>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
               similique tempora consequatur reprehenderit possimus accusantium?
